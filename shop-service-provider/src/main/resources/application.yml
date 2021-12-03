@@ -1,0 +1,44 @@
+
+spring:
+  application:
+    name: shop-service-provider
+# log config
+logging:
+  config: classpath:log4j2.xml
+  level:
+#    "com.alibaba.nacos": trace
+    "org.apache.dubbo": trace
+#    "org.jboss.netty": trace
+    root: info
+    web: info
+  file: logs/shop-service-provider.log
+
+# Dubbo Application  nacos
+## The default value of dubbo.application.name is ${spring.application.name}
+## dubbo.application.name=${spring.application.name}
+nacos:
+  service-address: 127.0.0.1
+  port: 8848
+dubbo:
+  application:
+    name: ${spring.application.name}
+    # 可选值 interface、instance、all，默认是 interface，即只注册接口级地址  instance 模式（只注册应用级地址）
+    #register-mode: instance
+#  registries:
+#    nacos1:
+#      address: nacos://${nacos.service-address}:${nacos.port}?namespace=cui
+#      protocol: tri
+#    nacos2:
+#      address: nacos://${nacos.service-address}:${nacos.port}
+#      protocol: tri
+
+  registry:
+    address: nacos://${nacos.service-address}:${nacos.port}
+  protocols:
+    dubbo:
+      name: tri
+      port: -1
+      server: netty
+  scan:
+   base-packages: cn.raysonblog.shopserviceprovider.service.impl
+

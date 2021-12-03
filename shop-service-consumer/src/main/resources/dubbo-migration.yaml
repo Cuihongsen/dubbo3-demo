@@ -1,0 +1,5 @@
+key: shop-service-consumer
+step: FORCE_APPLICATION
+applications:
+  - name: shop-service-provider
+    step: FORCE_APPLICATION
