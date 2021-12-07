@@ -17,7 +17,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author raysonfang
  */
-//@DubboService()
+@DubboService(protocol = "tri")
 public class ShopServiceImpl implements RpcShopService {
 
     @Override
