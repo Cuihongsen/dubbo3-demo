@@ -35,8 +35,12 @@ dubbo:
   registry:
     address: nacos://${nacos.service-address}:${nacos.port}
   protocols:
-    dubbo:
+    tri:
       name: tri
+      port: -1
+      server: netty
+    grpc:
+      name: grpc
       port: -1
       server: netty
   scan:

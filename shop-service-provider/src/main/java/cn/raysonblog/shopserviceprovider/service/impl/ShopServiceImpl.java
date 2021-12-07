@@ -17,8 +17,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author raysonfang
  */
-@DubboService()
-//@Path("/users")
+//@DubboService()
 public class ShopServiceImpl implements RpcShopService {
 
     @Override

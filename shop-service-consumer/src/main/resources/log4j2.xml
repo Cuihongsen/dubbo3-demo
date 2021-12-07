@@ -2,7 +2,7 @@
 <Configuration status="WARN" monitorInterval="300">  
 	<Properties>
 		<!-- 日志保存路径 -->
-		<property name="LOG_HOME">D:/raysonblog_log</property>
+		<property name="LOG_HOME">log</property>
 		<!-- 文件保存格式 -->
 		<property name="pattern_layout">%d{yyyy-MM-dd HH:mm:ss.SSS} [%c] [%F:%L] %-5level --|#$#|shopId:%X{shopId}|#$#|op_er:%X{op_er}|#$#|out_trade_no:%X{out_trade_no}|#$#|-- |^-^|%m|^-^|%n</property>
 		<!-- 应用名称 -->
