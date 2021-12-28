@@ -5,6 +5,14 @@
 
 体验新功能，并进行源码学习
 
+`DemoServiceImpl.sayHello` 基于 proto 的普通接口
+
+`DemoServiceImpl.sayHelloStream` 基于 proto 的双向流接口
+
+`RpcWrapperServiceImpl.sayHello` 基于 Wrapper 的 Unary 模式
+
+`RpcStreamWrapperServiceImpl.sayHello` 基于 Wrapper 的双向流接口
+
 
 #### 安装教程
 

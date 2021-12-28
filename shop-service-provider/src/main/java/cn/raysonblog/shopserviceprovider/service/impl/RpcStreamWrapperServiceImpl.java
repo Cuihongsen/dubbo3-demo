@@ -1,40 +1,33 @@
 package cn.raysonblog.shopserviceprovider.service.impl;
 
+import cn.raysonblog.shopservice.api.service.RpcStreamWrapperService;
 import org.apache.dubbo.common.stream.StreamObserver;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.apache.dubbo.demo.HelloReply;
-import org.apache.dubbo.demo.HelloRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @DubboService(protocol = {"tri"})
-public class DemoServiceImpl implements org.apache.dubbo.demo.DemoService {
+public class RpcStreamWrapperServiceImpl implements RpcStreamWrapperService {
     @Override
-    public HelloReply sayHello(HelloRequest request) {
-        final String name = request.getName();
-        return HelloReply.newBuilder().setMessage("hello " + name).build();
-    }
-
-    @Override
-    public StreamObserver<HelloRequest> sayHelloStream(StreamObserver<HelloReply> responseObserver) {
+    public StreamObserver<HelloRequest> sayHello(StreamObserver<HelloReply> replyObserver) {
         return new StreamObserver<HelloRequest>() {
             private final List<HelloReply> replyList = new ArrayList<>();
 
             @Override
             public void onNext(HelloRequest helloRequest) {
                 System.out.println("onNext receive request name:" + helloRequest.getName());
-                final HelloReply build = HelloReply.newBuilder()
-                        .setMessage("receive name:" + helloRequest.getName())
+                final HelloReply build = HelloReply.builder()
+                        .message("receive name:" + helloRequest.getName())
                         .build();
                 replyList.add(build);
-                responseObserver.onNext(build);
+                replyObserver.onNext(build);
             }
 
             @Override
             public void onError(Throwable cause) {
                 System.out.println("onError");
-                responseObserver.onError(cause);
+                replyObserver.onError(cause);
             }
 
             @Override
@@ -43,8 +36,17 @@ public class DemoServiceImpl implements org.apache.dubbo.demo.DemoService {
                 for (HelloReply reply : replyList) {
 //                    replyObserver.onNext(reply);
                 }
-                responseObserver.onCompleted();
+                replyObserver.onCompleted();
             }
         };
+    }
+
+    @Override
+    public HelloReply sayHelloWithoutStream(HelloRequest helloRequest) {
+        System.out.println("receive request name:" + helloRequest.getName());
+        final HelloReply helloReply = HelloReply.builder()
+                .message("receive name:" + helloRequest.getName())
+                .build();
+        return helloReply;
     }
 }

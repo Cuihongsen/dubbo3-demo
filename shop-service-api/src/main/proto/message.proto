@@ -4,12 +4,16 @@ option java_multiple_files = true;
 option java_package = "org.apache.dubbo.demo";
 option java_outer_classname = "DemoServiceProto";
 option objc_class_prefix = "DEMOSRV";
+option go_package = "org.apache.dubbo.demo";
 
-package demoservice;
+package org.apache.dubbo.demo;
 
 // The demo service definition.
 service DemoService {
+  // The SayHello definition.
   rpc SayHello (HelloRequest) returns (HelloReply) {}
+  // The SayHelloStream definition.
+  rpc SayHelloStream (stream HelloRequest) returns (stream HelloReply) {}
 }
 
 // The request message containing the user's name.

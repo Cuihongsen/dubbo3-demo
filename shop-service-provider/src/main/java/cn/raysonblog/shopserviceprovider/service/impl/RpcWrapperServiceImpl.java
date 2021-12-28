@@ -1,13 +1,7 @@
 package cn.raysonblog.shopserviceprovider.service.impl;
 
-import cn.raysonblog.shopservice.api.service.RpcShopService;
+import cn.raysonblog.shopservice.api.service.RpcWrapperService;
 import org.apache.dubbo.config.annotation.DubboService;
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 /**
  * 接口实现类
@@ -18,13 +12,9 @@ import javax.ws.rs.core.MediaType;
  * @author raysonfang
  */
 @DubboService(protocol = "tri")
-public class ShopServiceImpl implements RpcShopService {
+public class RpcWrapperServiceImpl implements RpcWrapperService {
 
     @Override
-//    @POST
-//    @Path("/register")
-//    @Consumes({MediaType.APPLICATION_JSON,MediaType.TEXT_HTML})
-//    @Produces({MediaType.APPLICATION_JSON,MediaType.TEXT_HTML})
     public String sayHello(String name) {
         return name + " provider" + System.currentTimeMillis();
     }

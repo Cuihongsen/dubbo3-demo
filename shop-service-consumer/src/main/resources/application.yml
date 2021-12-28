@@ -16,7 +16,8 @@ logging:
   level:
     root: info
     web: info
-  file: logs/shop-service-consumer.log
+  file:
+    name: logs/shop-service-consumer.log
 
 # Dubbo Application  nacos
 ## The default value of dubbo.application.name is ${spring.application.name}
@@ -37,3 +38,5 @@ dubbo:
     address: nacos://${nacos.service-address}:${nacos.port}
   scan:
     base-packages: cn.raysonblog.*.service.impl
+  consumer:
+    check: false
